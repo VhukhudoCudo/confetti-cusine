@@ -1,5 +1,7 @@
 "use strict";
 
+require("dotenv").config();
+
 const express = require("express"),
   app = express(),
   layouts = require("express-ejs-layouts"),
@@ -13,8 +15,8 @@ const express = require("express"),
 
 const mongoose = require("mongoose");
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/confetti_cuisine",
-  { useNewUrlParser: true }
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/confetti_cuisine",
+  { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 app.set("view engine", "ejs");
